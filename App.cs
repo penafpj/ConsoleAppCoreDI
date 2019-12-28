@@ -27,8 +27,6 @@ namespace ConsoleConfiguration
                 Console.WriteLine(file);
             }
 
-            //_logger.LogWarning("hello world");
-
             Console.Read();
         }
     }
