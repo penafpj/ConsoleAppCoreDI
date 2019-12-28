@@ -21,7 +21,9 @@ namespace ConsoleConfiguration
             Console.WriteLine("Hello world!");
             Console.WriteLine();
             Console.WriteLine(_appSettings.TempDirectory);
-            Console.WriteLine();            
+            Console.WriteLine();
+
+            Console.ReadLine();
         }
     }
 }
