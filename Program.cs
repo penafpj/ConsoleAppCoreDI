@@ -37,7 +37,15 @@ namespace ConsoleConfiguration
                 .Build();
 
             services.AddOptions();
-            services.Configure<AppSettings>(configuration.GetSection("App"));
+
+            //      The options pattern uses classes to represent groups of related settings. When configuration settings are isolated by
+            //  scenario into separate classes, the app adheres to two important software engineering principles:
+            //  SOLID:
+            //      The Interface Segregation Principle(ISP) or Encapsulation
+            //          Scenarios(classes) that depend on configuration settings depend only on the configuration settings that they use.
+            //    Separation of Concerns
+            //          Settings for different parts of the app aren't dependent or coupled to one another.
+            services.Configure<FileManagerSettings>(configuration.GetSection("FileManager"));
 
             //  add services: 
             //      services.AddTransient<IMyInterface, MyConcreteImplementation>();

@@ -7,22 +7,22 @@ namespace ConsoleConfiguration.Services
 {
     public class FileManager : IFileManager
     {
-        private readonly AppSettings _appSettings;
+        private readonly FileManagerSettings _fileManagerSettings;
 
-        public FileManager(IOptions<AppSettings> appSettings)
+        public FileManager(IOptions<FileManagerSettings> fileManagerSettings)
         {
-            _appSettings = appSettings?.Value ?? throw new ArgumentNullException();
+            _fileManagerSettings = fileManagerSettings?.Value ?? throw new ArgumentNullException();
         }
         public bool DirectoryExists()
         {
-            Console.WriteLine($"Directory: {_appSettings.TempDirectory}");
+            Console.WriteLine($"Directory: {_fileManagerSettings.TempDirectory}");
 
-            return Directory.Exists(_appSettings.TempDirectory);
+            return Directory.Exists(_fileManagerSettings.TempDirectory);
         }
 
         public IEnumerable<string> GetListOfFiles()
         {
-            return Directory.GetFiles(_appSettings.TempDirectory);
+            return Directory.GetFiles(_fileManagerSettings.TempDirectory);
         }
     }
 }

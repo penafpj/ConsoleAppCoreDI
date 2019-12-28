@@ -1,6 +1,6 @@
 ﻿namespace ConsoleConfiguration
 {
-    public class AppSettings
+    public class FileManagerSettings
     {
         public string TempDirectory { get; set; }
     }
