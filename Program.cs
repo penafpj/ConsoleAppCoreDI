@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace ConsoleConfiguration
 {
@@ -11,7 +10,7 @@ namespace ConsoleConfiguration
         //  Based on this article:
         //      https://keestalkstech.com/2018/04/dependency-injection-with-ioptions-in-console-apps-in-net-core-2/
         //
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
             // create service collection
             var services = new ServiceCollection();
@@ -21,7 +20,7 @@ namespace ConsoleConfiguration
             var serviceProvider = services.BuildServiceProvider();
 
             // entry point to run the application (App)
-            await serviceProvider.GetService<App>().Run();
+            serviceProvider.GetService<App>().Run();
         }
 
         private static void ConfigureServices(IServiceCollection services)

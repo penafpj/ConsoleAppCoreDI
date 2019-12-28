@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
-using System.Threading.Tasks;
 
 namespace ConsoleConfiguration
 {
@@ -16,15 +15,13 @@ namespace ConsoleConfiguration
             _appSettings = appSettings?.Value ?? throw new ArgumentNullException(nameof(appSettings));
         }
 
-        public async Task Run()
+        public void Run()
         {
             Console.WriteLine();
             Console.WriteLine("Hello world!");
             Console.WriteLine();
             Console.WriteLine(_appSettings.TempDirectory);
-            Console.WriteLine();
-
-            await Task.CompletedTask;
+            Console.WriteLine();            
         }
     }
 }
