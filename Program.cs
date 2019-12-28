@@ -1,7 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.IO;
+using ConsoleConfiguration.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.IO;
 
 namespace ConsoleConfiguration
 {
@@ -38,8 +39,10 @@ namespace ConsoleConfiguration
             services.AddOptions();
             services.Configure<AppSettings>(configuration.GetSection("App"));
 
-            // add services:
-            // services.AddTransient<IMyRespository, MyConcreteRepository>();
+            //  add services: 
+            //      services.AddTransient<IMyInterface, MyConcreteImplementation>();
+
+            services.AddSingleton<IFileManager, FileManager>();
 
             // add app
             services.AddTransient<App>();

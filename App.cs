@@ -1,29 +1,35 @@
-﻿using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using System;
+﻿using System;
+using ConsoleConfiguration.Services;
+using Microsoft.Extensions.Logging;
 
 namespace ConsoleConfiguration
 {
     public class App
     {
         private readonly ILogger<App> _logger;
-        private readonly AppSettings _appSettings;
+        private readonly IFileManager _fileManager;
 
-        public App(IOptions<AppSettings> appSettings, ILogger<App> logger)
+        public App(ILogger<App> logger, IFileManager fileManager)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _appSettings = appSettings?.Value ?? throw new ArgumentNullException(nameof(appSettings));
+            _fileManager = fileManager;
         }
 
         public void Run()
         {
-            Console.WriteLine();
-            Console.WriteLine("Hello world!");
-            Console.WriteLine();
-            Console.WriteLine(_appSettings.TempDirectory);
-            Console.WriteLine();
+            //  App is the real starting place for this application.
 
-            Console.ReadLine();
+            Console.WriteLine(_fileManager.DirectoryExists().ToString());
+
+            var fileList = _fileManager.GetListOfFiles();
+            foreach (var file in fileList)
+            {
+                Console.WriteLine(file);
+            }
+
+            //_logger.LogWarning("hello world");
+
+            Console.Read();
         }
     }
 }
